@@ -1,5 +1,5 @@
 {
-  description = "A development shell with Python 3.13, fish shell, and gnumake";
+  description = "A development shell";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
@@ -12,10 +12,11 @@
         pkgs = import nixpkgs { inherit system; };
       in {
         devShells.default = pkgs.mkShell {
-          buildInputs = [
-            pkgs.python313
-            pkgs.fish
-            pkgs.gnumake
+          buildInputs = with pkgs; [
+            python313
+            fish
+            gnumake
+            uv
           ];
           shellHook = ''
             export SHELL=${pkgs.fish}/bin/fish
