@@ -38,6 +38,12 @@ docs-test: ## Test if documentation can be built without warnings or errors
 docs: ## Build and serve the documentation
 	@uv run mkdocs serve
 
+.PHONY: infra-up
+infra-up: ## Start infrastructure (docker-compose) using .env from the root repository
+	@echo "🚀 Starting infrastructure through docker-compose with your .env"
+	@if [ ! -f .env ]; then echo "❌ .env file not found!"; exit 1; fi
+	@docker compose --env-file .env up -d --build
+
 .PHONY: help
 help:
 	@uv run python -c "import re; \
