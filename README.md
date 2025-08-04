@@ -1,69 +1,81 @@
-# connector
+Connector is a layer of our strategy engine.
 
-[![Release](https://img.shields.io/github/v/release/AutomaticTrading/connector)](https://img.shields.io/github/v/release/AutomaticTrading/connector)
-[![Build status](https://img.shields.io/github/actions/workflow/status/AutomaticTrading/connector/main.yml?branch=main)](https://github.com/AutomaticTrading/connector/actions/workflows/main.yml?query=branch%3Amain)
-[![codecov](https://codecov.io/gh/AutomaticTrading/connector/branch/main/graph/badge.svg)](https://codecov.io/gh/AutomaticTrading/connector)
-[![Commit activity](https://img.shields.io/github/commit-activity/m/AutomaticTrading/connector)](https://img.shields.io/github/commit-activity/m/AutomaticTrading/connector)
-[![License](https://img.shields.io/github/license/AutomaticTrading/connector)](https://img.shields.io/github/license/AutomaticTrading/connector)
+It receives data from markets (such as ByBit, Binance, Drift, etc.), pushes it to the outbox database, and then:
+- moves the data to persistent storage (such as S3)
+- adapts the data using an adapter and moves it to another outbox
 
-📡 Python client for seamless integration with crypto exchanges.
+The job uses the new outbox to:
+- move data to the cache
+- move data to the timeseries database
+- move data to the message queue (MQ)
 
-- **Github repository**: <https://github.com/AutomaticTrading/connector/>
-- **Documentation** <https://AutomaticTrading.github.io/connector/>
+The MQ is used by other layers of our program and by the WebSocket (WS) server.
 
-## Getting started with your project
+Here is scheme of data flow with monitoring & tracing:
 
-### 1. Create a New Repository
+```mermaid
+flowchart TD
+    subgraph Markets
+        ByBit
+        Binance
+        Drift
+        OKX
+    end
 
-First, create a repository on GitHub with the same name as this project, and then run the following commands:
+    subgraph MonitoringAndTracing["Monitoring & Tracing"]
+        Prometheus
+        Grafana
+        Jaeger
+        Loki
+    end
 
-```bash
-git init -b main
-git add .
-git commit -m "init commit"
-git remote add origin git@github.com:AutomaticTrading/connector.git
-git push -u origin main
+    subgraph CommandFlow["Command Flow"]
+        ServiceLayer[Service Layer / API]
+        CommandOutbox
+        CommandProcessor
+    end
+
+    Markets -->|Data via WS| Listener
+    Listener -->|Data via Transaction| OutboxDB
+
+    OutboxDB -->|Move| PersistStorage[S3]
+    OutboxDB -->|Adaptation| Adapter
+    Adapter -->|Adapted Data| OutboxDB
+    OutboxDB -->|To Cache| Cache
+    OutboxDB -->|To Timeseries DB| TimeseriesDB
+    OutboxDB -->|To MQ| MQ
+    MQ -->|Usage| ExternalServices[External Services]
+    MQ -->|Usage| WSServer[WS Server]
+
+    Listener -->|Metrics| Prometheus
+    Adapter -->|Metrics| Prometheus
+    MQ -->|Metrics| Prometheus
+    WSServer -->|Metrics| Prometheus
+    CommandProcessor -->|Metrics| Prometheus
+    ServiceLayer -->|Metrics| Prometheus
+
+    Prometheus -->|Dashboards| Grafana
+    Loki -->|Logs| Grafana
+    Jaeger -->|Traces| Grafana
+
+    Listener -->|Spans| Jaeger
+    Adapter -->|Spans| Jaeger
+    MQ -->|Spans| Jaeger
+    CommandProcessor -->|Spans| Jaeger
+    ServiceLayer -->|Spans| Jaeger
+
+    Listener -->|Logs| Loki
+    Adapter -->|Logs| Loki
+    MQ -->|Logs| Loki
+    WSServer -->|Logs| Loki
+    CommandProcessor -->|Logs| Loki
+    ServiceLayer -->|Logs| Loki
+
+    ExternalServices -->|Command Request| ServiceLayer
+    WSServer -->|Command Request| ServiceLayer
+    ServiceLayer -->|Validated Command| CommandOutbox
+    CommandOutbox -- Push Event --> CommandProcessor
+    CommandOutbox -- Polling --> CommandProcessor
+    CommandProcessor -->|API Call| Markets
+    Markets -->|Command Response| Listener
 ```
-
-### 2. Set Up Your Development Environment
-
-Then, install the environment and the pre-commit hooks with
-
-```bash
-make install
-```
-
-This will also generate your `uv.lock` file
-
-### 3. Run the pre-commit hooks
-
-Initially, the CI/CD pipeline might be failing due to formatting issues. To resolve those run:
-
-```bash
-uv run pre-commit run -a
-```
-
-### 4. Commit the changes
-
-Lastly, commit the changes made by the two steps above to your repository.
-
-```bash
-git add .
-git commit -m 'Fix formatting issues'
-git push origin main
-```
-
-You are now ready to start development on your project!
-The CI/CD pipeline will be triggered when you open a pull request, merge to main, or when you create a new release.
-
-To finalize the set-up for publishing to PyPI, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/publishing/#set-up-for-pypi).
-For activating the automatic documentation with MkDocs, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/mkdocs/#enabling-the-documentation-on-github).
-To enable the code coverage reports, see [here](https://fpgmaas.github.io/cookiecutter-uv/features/codecov/).
-
-## Releasing a new version
-
-
-
----
-
-Repository initiated with [fpgmaas/cookiecutter-uv](https://github.com/fpgmaas/cookiecutter-uv).
