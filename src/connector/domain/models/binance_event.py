@@ -1,0 +1,2 @@
+class BinanceEvent:
+    pass
