@@ -17,6 +17,7 @@
             fish
             gnumake
             uv
+            ruff
           ];
           shellHook = ''
             export SHELL=${pkgs.fish}/bin/fish
