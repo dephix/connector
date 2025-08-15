@@ -1,6 +1,6 @@
 {
   "name": "connector",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "📡 Client for seamless integration with crypto exchanges.",
   "author": "dephix",
   "private": true,
