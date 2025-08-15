@@ -26,5 +26,10 @@ jobs:
         run: pnpm run lint
       - name: Build
         run: pnpm run build
-      - name: Test
-        run: pnpm run test -- --ci
+      - name: Test with coverage
+        run: pnpm run test:cov
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-lcov
+          path: coverage/lcov.info
