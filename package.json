@@ -1,6 +1,6 @@
 {
   "name": "connector",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "📡 Client for seamless integration with crypto exchanges.",
   "author": "",
   "private": true,

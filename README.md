@@ -38,7 +38,11 @@ MARKETDATA_PORT=3020
 ANALYSIS_PORT=3030
 ```
 
+## Status & CI
+[![CI](https://github.com/AutomaticTrading/connector/actions/workflows/ci.yml/badge.svg)](https://github.com/AutomaticTrading/connector/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 ## Documentation
-- Architecture and Nest monorepo guide: see `docs/` for service‑level docs and usage.
-- NestJS monorepo reference: https://docs.nestjs.com/cli/monorepo
+- Service docs live in `docs/`.
+- Monorepo reference: https://docs.nestjs.com/cli/monorepo
 
