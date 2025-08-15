@@ -1,6 +1,6 @@
 {
   "name": "connector",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "📡 Client for seamless integration with crypto exchanges.",
   "author": "dephix",
   "private": true,
@@ -46,6 +46,7 @@
     "@opentelemetry/resources": "^1.9.0",
     "@opentelemetry/semantic-conventions": "^1.28.0",
     "dotenv": "^16.4.7",
+    "ws": "^8.18.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
@@ -83,6 +84,7 @@
     "rootDir": ".",
     "moduleNameMapper": {
       "^@connector/config$": "<rootDir>/libs/config/src",
+      "^@connector/config/(.*)$": "<rootDir>/libs/config/src/$1",
       "^@connector/observability$": "<rootDir>/libs/observability/src",
       "^@connector/contracts$": "<rootDir>/libs/contracts/src",
       "^@connector/(.*)$": "<rootDir>/libs/$1/src"
