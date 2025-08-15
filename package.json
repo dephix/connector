@@ -1,6 +1,6 @@
 {
   "name": "connector",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "📡 Client for seamless integration with crypto exchanges.",
   "author": "",
   "private": true,
@@ -82,6 +82,14 @@
       "^@connector/observability$": "<rootDir>/libs/observability/src",
       "^@connector/contracts$": "<rootDir>/libs/contracts/src",
       "^@connector/(.*)$": "<rootDir>/libs/$1/src"
+    },
+    "coverageThreshold": {
+      "global": {
+        "branches": 35,
+        "functions": 35,
+        "lines": 40,
+        "statements": 40
+      }
     },
     "testMatch": ["**/?(*.)+(spec|test).ts"],
     "transform": {"^.+\\.(t|j)s$": "ts-jest"},
