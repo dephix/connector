@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json.schemastore.org/nest-cli",
+  "collection": "@nestjs/schematics",
+  "monorepo": true,
+  "root": "apps",
+  "sourceRoot": "apps",
+  "compilerOptions": {
+    "deleteOutDir": true
+  },
+  "projects": {
+    "api": {
+      "type": "application",
+      "root": "apps/api",
+      "entryFile": "main",
+      "sourceRoot": "apps/api/src"
+    },
+    "bc-catalog": {
+      "type": "application",
+      "root": "apps/bc-catalog",
+      "entryFile": "main",
+      "sourceRoot": "apps/bc-catalog/src"
+    },
+    "bc-marketdata": {
+      "type": "application",
+      "root": "apps/bc-marketdata",
+      "entryFile": "main",
+      "sourceRoot": "apps/bc-marketdata/src"
+    },
+    "bc-analysis": {
+      "type": "application",
+      "root": "apps/bc-analysis",
+      "entryFile": "main",
+      "sourceRoot": "apps/bc-analysis/src"
+    }
+  }
+}
