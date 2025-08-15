@@ -20,12 +20,14 @@ pnpm run start:all
 ```
 
 Then check:
+
 - API: `http://localhost:3000` (metrics at `/metrics`)
 - Jaeger UI: `http://localhost:16686`
 - Prometheus: `http://localhost:9090`
 - Grafana: `http://localhost:3001`
 
 ## Configuration (.env)
+
 See `.env.example`. You can set global variables and per-service ports:
 
 ```env
@@ -39,10 +41,11 @@ ANALYSIS_PORT=3030
 ```
 
 ## Status & CI
-[![CI](https://github.com/AutomaticTrading/connector/actions/workflows/ci.yml/badge.svg)](https://github.com/AutomaticTrading/connector/actions/workflows/ci.yml)
+
+[![CI](https://github.com/dephix/connector/actions/workflows/ci.yml/badge.svg)](https://github.com/dephix/connector/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 ## Documentation
+
 - Service docs live in `docs/`.
 - Monorepo reference: https://docs.nestjs.com/cli/monorepo
-
