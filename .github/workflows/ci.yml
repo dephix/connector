@@ -17,18 +17,14 @@ jobs:
         with:
           node-version: 22
           cache: 'pnpm'
-      - name: Install pnpm
-        run: npm i -g pnpm@10
       - name: Install dependencies
-        run: |
-          pnpm -v
-          pnpm install --frozen-lockfile
+        run: npx -y pnpm@10 install --frozen-lockfile
       - name: Lint
-        run: pnpm run lint
+        run: npx -y pnpm@10 run lint
       - name: Build
-        run: pnpm run build
+        run: npx -y pnpm@10 run build
       - name: Test with coverage
-        run: pnpm run test:cov
+        run: npx -y pnpm@10 run test:cov
       - name: Upload coverage artifact
         uses: actions/upload-artifact@v4
         with:
