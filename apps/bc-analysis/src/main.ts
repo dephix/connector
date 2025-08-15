@@ -13,6 +13,6 @@ async function bootstrap() {
     options: { servers: [cfg.natsUrl] },
   });
   await app.startAllMicroservices();
-  await app.listen(process.env.PORT ? Number(process.env.PORT) : 3030);
+  await app.listen(cfg.port ?? 3030);
 }
 bootstrap();
