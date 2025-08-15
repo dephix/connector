@@ -1,4 +1,4 @@
-# Service: bc-catalog
+# Service: catalog
 
 ## Summary
 - Purpose: source of truth for exchanges and symbols (listing, metadata).
@@ -11,7 +11,7 @@
 - `catalog.symbols.list` (req/reply)
 
 ## Environment variables
-- `BC_CATALOG_PORT` (overrides `PORT`) — default 3010
+- `CATALOG_PORT` (overrides `PORT`) — default 3010
 - `NATS_URL` — default `nats://localhost:4222`
 - `OTEL_EXPORTER_OTLP_ENDPOINT` — default `http://localhost:4317`
 - `LOG_LEVEL` — default `info`

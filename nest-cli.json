@@ -14,23 +14,23 @@
       "entryFile": "main",
       "sourceRoot": "apps/api/src"
     },
-    "bc-catalog": {
+    "catalog": {
       "type": "application",
-      "root": "apps/bc-catalog",
+      "root": "apps/catalog",
       "entryFile": "main",
-      "sourceRoot": "apps/bc-catalog/src"
+      "sourceRoot": "apps/catalog/src"
     },
-    "bc-marketdata": {
+    "marketdata": {
       "type": "application",
-      "root": "apps/bc-marketdata",
+      "root": "apps/marketdata",
       "entryFile": "main",
-      "sourceRoot": "apps/bc-marketdata/src"
+      "sourceRoot": "apps/marketdata/src"
     },
-    "bc-analysis": {
+    "analysis": {
       "type": "application",
-      "root": "apps/bc-analysis",
+      "root": "apps/analysis",
       "entryFile": "main",
-      "sourceRoot": "apps/bc-analysis/src"
+      "sourceRoot": "apps/analysis/src"
     }
   }
 }

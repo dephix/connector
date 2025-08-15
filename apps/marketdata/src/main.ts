@@ -5,14 +5,14 @@ import { setupObservability } from '@connector/observability';
 import { loadConfig } from '@connector/config';
 
 async function bootstrap() {
-  setupObservability({ serviceName: 'bc-analysis' });
-  const cfg = loadConfig('bc-analysis');
+  setupObservability({ serviceName: 'marketdata' });
+  const cfg = loadConfig('marketdata');
   const app = await NestFactory.create(AppModule);
   app.connectMicroservice<MicroserviceOptions>({
     transport: Transport.NATS,
     options: { servers: [cfg.natsUrl] },
   });
   await app.startAllMicroservices();
-  await app.listen(cfg.port ?? 3030);
+  await app.listen(cfg.port ?? 3020);
 }
 bootstrap();

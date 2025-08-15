@@ -1,4 +1,4 @@
-# Service: bc-analysis
+# Service: analysis
 
 ## Summary
 - Purpose: compute analysis for symbols/exchanges using market data.
@@ -8,7 +8,7 @@
 - Observability: pino logs, `/metrics`, OTEL traces.
 
 ## Environment variables
-- `BC_ANALYSIS_PORT` (overrides `PORT`) — default 3030
+- `ANALYSIS_PORT` (overrides `PORT`) — default 3030
 - `NATS_URL` — default `nats://localhost:4222`
 - `OTEL_EXPORTER_OTLP_ENDPOINT` — default `http://localhost:4317`
 - `LOG_LEVEL` — default `info`

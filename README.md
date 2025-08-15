@@ -4,9 +4,9 @@ This repository contains a NestJS monorepo organized around independent bounded 
 
 - Bounded contexts as apps:
   - `api`: REST API facade that fans out to BCs over NATS
-  - `bc-catalog`: exchange/symbol catalog and lookups
-  - `bc-marketdata`: ingestion adapters for exchanges (REST/WS), emits market data events
-  - `bc-analysis`: computes analysis for symbols/exchanges upon requests or events
+  - `catalog`: exchange/symbol catalog and lookups
+  - `marketdata`: ingestion adapters for exchanges (REST/WS), emits market data events
+  - `analysis`: computes analysis for symbols/exchanges upon requests or events
 - Cross-cutting libs: `config`, `observability`, `contracts`.
 - Observability included out of the box: structured logs (pino), Prometheus metrics, OpenTelemetry traces (OTLP → Collector → Jaeger).
 
@@ -33,9 +33,9 @@ NATS_URL=nats://localhost:4222
 OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317
 LOG_LEVEL=info
 API_PORT=3000
-BC_CATALOG_PORT=3010
-BC_MARKETDATA_PORT=3020
-BC_ANALYSIS_PORT=3030
+CATALOG_PORT=3010
+MARKETDATA_PORT=3020
+ANALYSIS_PORT=3030
 ```
 
 ## Documentation
