@@ -26,6 +26,7 @@
       "@connector/contracts/*": ["libs/contracts/src/*"],
       "@connector/observability": ["libs/observability/src"],
       "@connector/config": ["libs/config/src"],
+      "@connector/config/*": ["libs/config/src/*"],
       "@connector/catalog/*": ["libs/catalog/*/src"],
       "@connector/marketdata/*": ["libs/marketdata/*/src"],
       "@connector/analysis/*": ["libs/analysis/*/src"]
