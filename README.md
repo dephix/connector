@@ -46,22 +46,17 @@ MARKETDATA_PORT=3020
 ANALYSIS_PORT=3030
 ```
 
-## Status & CI
-
-[![CI](https://github.com/dephix/connector/actions/workflows/ci.yml/badge.svg)](https://github.com/dephix/connector/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Docker Release](https://github.com/dephix/connector/actions/workflows/release.yml/badge.svg)](https://github.com/dephix/connector/actions/workflows/release.yml)
-
 ## Documentation
 
 - Service docs live in `docs/`.
 - Monorepo reference: https://docs.nestjs.com/cli/monorepo
- 
+
 ### Docker images
 
 - Published to `ghcr.io/dephix/connector` on Git tag push.
 - Tags per app: `vX.Y.Z-api`, `vX.Y.Z-catalog`, `vX.Y.Z-marketdata`, `vX.Y.Z-analysis`.
 - Run example:
+
 ```bash
 docker run --rm -e NATS_URL=nats://host.docker.internal:4222 -p 3000:3000 ghcr.io/dephix/connector:v0.1.0-api
 ```
