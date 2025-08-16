@@ -59,22 +59,30 @@ export class AppController {
     const js = conn.jetstream();
     const res: unknown[] = [];
     // Simplified: fetch last N messages directly from the stream (sequence-based)
-    const si = await jsm.streams.getMessage(stream, { last_by_subj: subject } as any).catch(() => null);
+    const si = await jsm.streams
+      .getMessage(stream, { last_by_subj: subject } as any)
+      .catch(() => null);
     if (si && (si as any).data) {
       // direct last message
-      try { res.push(JSON.parse(new TextDecoder().decode((si as any).data))); } catch {}
+      try {
+        res.push(JSON.parse(new TextDecoder().decode((si as any).data)));
+      } catch (_e) {
+        /* ignore */
+      }
       await conn.drain();
       return res;
     }
     // Fallback to consumer pull (if getMessage not available)
-    const durableName = `api_ticks_${exchangeId}_${symbol}`;
-    const sub = await js.pullSubscribe(subject, { durable: (name: string) => name } as any);
+    const _durableName = `api_ticks_${exchangeId}_${symbol}`;
+    const sub = await js.pullSubscribe(subject, {
+      durable: (name: string) => name,
+    } as any);
     await sub.pull({ batch: limit, expires: 1000 });
     for await (const m of sub) {
       try {
         res.push(JSON.parse(new TextDecoder().decode(m.data)));
       } catch (_e) {
-        // ignore malformed
+        /* ignore malformed */
       }
       m.ack();
       if (res.length >= limit) break;
