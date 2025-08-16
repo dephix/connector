@@ -54,6 +54,9 @@ curl "http://localhost:3000/symbols?exchangeId=bybit"
 
 # symbol analysis
 curl "http://localhost:3000/analysis/symbol?exchangeId=bybit&symbol=BTCUSDT"
+
+# read last ticks from JetStream (requires running marketdata)
+curl "http://localhost:3000/ticks?exchangeId=bybit&symbol=BTCUSDT&limit=10"
 ```
 
 ## Metrics & health
@@ -102,6 +105,12 @@ MARKETDATA_EXCHANGES=bybit,binance
 MARKETDATA_SYMBOLS=BTCUSDT,ETHUSDT
 ```
 Horizontal scaling per symbol: run multiple `marketdata` instances with different `MARKETDATA_SYMBOLS` sets (e.g., one instance per symbol).
+
+### WebSocket for external clients
+- Connect to: `ws://localhost:3000/ws`
+- Optional URL filters (query params): `?exchange=bybit&symbol=BTCUSDT`
+- Messages are JSON conforming to `TickIngestedV1`:
+  `{ "exchangeId": "bybit", "symbol": "BTCUSDT", "price": 123.45, "ts": 1700000000000, "version": "v1" }`
 
 ## Port 4317 conflict (OTLP)
 By default, the OpenTelemetry Collector publishes gRPC on host port 4317. If your host already uses 4317:

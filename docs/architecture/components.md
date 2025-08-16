@@ -3,7 +3,8 @@
 ```mermaid
 flowchart TB
   subgraph api
-    API_C[Controllers]
+    API_C[HTTP Controllers]
+    API_WS[WS Gateway (/ws)]
     API_MS[NATS Clients]
   end
 
@@ -28,6 +29,7 @@ flowchart TB
   end
 
   API_C --> API_MS
+  API_WS --> API_MS
   API_MS <-->|request/reply| CAT_CTRL
   API_MS <-->|request/reply| AN_CTRL
   MD_WS --> MD_GATEWAY --> MD_PUB --> AN_CTRL

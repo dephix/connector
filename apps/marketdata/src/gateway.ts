@@ -1,4 +1,9 @@
-import { Injectable, Logger, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
+import {
+  Injectable,
+  Logger,
+  OnModuleDestroy,
+  OnModuleInit,
+} from '@nestjs/common';
 import { loadMarketdataConfig } from '@connector/config/marketdata';
 import {
   BybitWsClient,
@@ -33,7 +38,9 @@ export class MarketdataGateway implements OnModuleInit, OnModuleDestroy {
         continue;
       }
       for (const symbol of cfg.symbols) {
-        const ws = client.connect(symbol, (msg) => this.handleTicker(exchange, msg));
+        const ws = client.connect(symbol, (msg) =>
+          this.handleTicker(exchange, msg),
+        );
         this.sockets.push(ws);
         this.logger.log(`Subscribed ${exchange}:${symbol}`);
       }
