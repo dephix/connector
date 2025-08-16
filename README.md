@@ -66,9 +66,11 @@ ANALYSIS_PORT=3030
 flowchart LR
   subgraph Clients
     REST[REST clients]
+    WS_CLIENTS[WS clients]
   end
 
   REST -->|HTTP| API
+  WS_CLIENTS -. WS /ws .-> API
 
   subgraph Apps
     API[api]
@@ -79,7 +81,9 @@ flowchart LR
 
   API <--> |NATS req/reply| CATALOG
   API <--> |NATS req/reply| ANALYSIS
-  MARKETDATA --> |events: ticks/candles| ANALYSIS
+  MARKETDATA --> |events: ticks| JETSTREAM[(NATS JetStream)]
+  JETSTREAM --> |consume| ANALYSIS
+  JETSTREAM --> |fan-out via api/ws| API
 
   subgraph Exchanges
     Bybit
