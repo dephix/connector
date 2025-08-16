@@ -50,6 +50,56 @@ ANALYSIS_PORT=3030
 
 - Service docs live in `docs/`.
 - Monorepo reference: https://docs.nestjs.com/cli/monorepo
+ 
+## Approach & Architecture
+
+### Development approach
+- DDD/Clean Architecture with independent apps (bounded contexts) communicating via broker (NATS)
+- Separation: domain/application/infrastructure per context; API is a thin facade
+- Observability first: logs (pino), metrics (Prometheus), traces (OTel)
+- CI: lint, build, tests with coverage; Release: Docker images by tag
+
+### High-level architecture
+```mermaid
+flowchart LR
+  subgraph Clients
+    REST[REST clients]
+  end
+
+  REST -->|HTTP| API
+
+  subgraph Apps
+    API[api]
+    CATALOG[catalog]
+    MARKETDATA[marketdata]
+    ANALYSIS[analysis]
+  end
+
+  API <--> |NATS req/reply| CATALOG
+  API <--> |NATS req/reply| ANALYSIS
+  MARKETDATA --> |events: ticks/candles| ANALYSIS
+
+  subgraph Exchanges
+    Bybit
+    Binance
+  end
+  Bybit <-. WS .-> MARKETDATA
+  Binance <-. WS .-> MARKETDATA
+
+  subgraph Observability
+    Prom[Prometheus]
+    Jaeger
+  end
+
+  API -. /metrics .-> Prom
+  CATALOG -. /metrics .-> Prom
+  MARKETDATA -. /metrics .-> Prom
+  ANALYSIS -. /metrics .-> Prom
+  API -. traces .-> Jaeger
+  CATALOG -. traces .-> Jaeger
+  MARKETDATA -. traces .-> Jaeger
+  ANALYSIS -. traces .-> Jaeger
+```
 
 ### Docker images
 
