@@ -2,6 +2,7 @@
 
 [![CI](https://github.com/dephix/connector/actions/workflows/ci.yml/badge.svg)](https://github.com/dephix/connector/actions/workflows/ci.yml)
 [![Docker Release](https://github.com/dephix/connector/actions/workflows/release.yml/badge.svg)](https://github.com/dephix/connector/actions/workflows/release.yml)
+[![Dependabot](https://img.shields.io/badge/Dependabot-enabled-blue?logo=dependabot)](https://github.com/dephix/connector/security/dependabot)
 [![Node.js](https://img.shields.io/badge/node-22.x-brightgreen)](https://nodejs.org)
 [![pnpm](https://img.shields.io/badge/pnpm-10.x-orange)](https://pnpm.io)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
