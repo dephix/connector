@@ -12,8 +12,16 @@ const cfg = loadConfig('api');
     ...ObservabilityModules,
     PrometheusModule.register(),
     ClientsModule.register([
-      { name: 'CATALOG', transport: Transport.NATS, options: { servers: [cfg.natsUrl] } },
-      { name: 'ANALYSIS', transport: Transport.NATS, options: { servers: [cfg.natsUrl] } },
+      {
+        name: 'CATALOG',
+        transport: Transport.NATS,
+        options: { servers: [cfg.natsUrl] },
+      },
+      {
+        name: 'ANALYSIS',
+        transport: Transport.NATS,
+        options: { servers: [cfg.natsUrl] },
+      },
     ]),
   ],
   controllers: [AppController],

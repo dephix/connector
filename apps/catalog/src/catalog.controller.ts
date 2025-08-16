@@ -5,7 +5,10 @@ import { MessagePattern, Payload } from '@nestjs/microservices';
 export class CatalogController {
   @MessagePattern('catalog.exchanges.list')
   listExchanges() {
-    return [{ id: 'bybit', name: 'Bybit' }, { id: 'binance', name: 'Binance' }];
+    return [
+      { id: 'bybit', name: 'Bybit' },
+      { id: 'binance', name: 'Binance' },
+    ];
   }
 
   @MessagePattern('catalog.symbols.list')

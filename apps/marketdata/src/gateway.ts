@@ -1,6 +1,16 @@
-import { Injectable, Logger, OnModuleDestroy, OnModuleInit } from '@nestjs/common';
+import {
+  Injectable,
+  Logger,
+  OnModuleDestroy,
+  OnModuleInit,
+} from '@nestjs/common';
 import { loadMarketdataConfig } from '@connector/config/marketdata';
-import { BybitWsClient, BinanceWsClient, ExchangeWsClient, TickerMessage } from './ws-clients';
+import {
+  BybitWsClient,
+  BinanceWsClient,
+  ExchangeWsClient,
+  TickerMessage,
+} from './ws-clients';
 import WebSocket from 'ws';
 
 @Injectable()
@@ -22,7 +32,9 @@ export class MarketdataGateway implements OnModuleInit, OnModuleDestroy {
         continue;
       }
       for (const symbol of cfg.symbols) {
-        const ws = client.connect(symbol, (msg) => this.handleTicker(exchange, msg));
+        const ws = client.connect(symbol, (msg) =>
+          this.handleTicker(exchange, msg),
+        );
         this.sockets.push(ws);
         this.logger.log(`Subscribed ${exchange}:${symbol}`);
       }
@@ -31,7 +43,11 @@ export class MarketdataGateway implements OnModuleInit, OnModuleDestroy {
 
   onModuleDestroy() {
     for (const ws of this.sockets) {
-      try { ws.close(); } catch {}
+      try {
+        ws.close();
+      } catch (err) {
+        this.logger.warn(`ws.close error: ${String(err)}`);
+      }
     }
     this.sockets = [];
   }

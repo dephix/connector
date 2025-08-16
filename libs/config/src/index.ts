@@ -19,7 +19,7 @@ export function loadConfig(serviceName: string) {
   const env = schema.parse(process.env);
   const prefix = toEnvPrefix(serviceName);
   const specificPortVar = `${prefix}_PORT`;
-  const portStr = (process.env[specificPortVar] as string | undefined) ?? env.PORT;
+  const portStr = process.env[specificPortVar] ?? env.PORT;
   return {
     natsUrl: env.NATS_URL,
     port: portStr ? Number(portStr) : undefined,

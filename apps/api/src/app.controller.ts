@@ -19,7 +19,13 @@ export class AppController {
   }
 
   @Get('/analysis/symbol')
-  analyzeSymbol(@Query('exchangeId') exchangeId: string, @Query('symbol') symbol: string) {
-    return this.analysis.send('analysis.symbol.requested', { exchangeId, symbol });
+  analyzeSymbol(
+    @Query('exchangeId') exchangeId: string,
+    @Query('symbol') symbol: string,
+  ) {
+    return this.analysis.send('analysis.symbol.requested', {
+      exchangeId,
+      symbol,
+    });
   }
 }

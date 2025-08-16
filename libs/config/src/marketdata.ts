@@ -15,7 +15,11 @@ export type MarketdataConfig = {
 
 export function loadMarketdataConfig(): MarketdataConfig {
   const env = schema.parse(process.env);
-  const exchanges = env.MARKETDATA_EXCHANGES.split(',').map((s) => s.trim()).filter(Boolean);
-  const symbols = env.MARKETDATA_SYMBOLS.split(',').map((s) => s.trim()).filter(Boolean);
+  const exchanges = env.MARKETDATA_EXCHANGES.split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
+  const symbols = env.MARKETDATA_SYMBOLS.split(',')
+    .map((s) => s.trim())
+    .filter(Boolean);
   return { exchanges, symbols };
 }

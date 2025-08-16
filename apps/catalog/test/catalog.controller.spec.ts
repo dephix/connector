@@ -21,7 +21,9 @@ describe('CatalogController', () => {
   it('returns symbols for bybit', () => {
     const symbols = controller.listSymbols({ exchangeId: 'bybit' });
     expect(symbols.length).toBeGreaterThan(0);
-    expect(symbols[0]).toEqual(expect.objectContaining({ id: expect.any(String) }));
+    expect(symbols[0]).toEqual(
+      expect.objectContaining({ id: expect.any(String) }),
+    );
   });
 
   it('returns empty symbols for unknown exchange', () => {

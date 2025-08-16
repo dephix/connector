@@ -1,6 +1,4 @@
-import { Logger } from 'nestjs-pino';
 import { LoggerModule } from 'nestjs-pino';
-import pino from 'pino';
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
 import { OTLPTraceExporter } from '@opentelemetry/exporter-trace-otlp-grpc';
@@ -17,16 +15,23 @@ export function setupObservability(opts: { serviceName: string }) {
       traceExporter: exporter,
       instrumentations: [getNodeAutoInstrumentations()],
     });
-    sdk.start();
-    process.on('SIGTERM', () => { sdk?.shutdown(); });
-    process.on('beforeExit', () => { sdk?.shutdown(); });
+    void sdk.start();
+    process.on('SIGTERM', () => {
+      void sdk?.shutdown();
+    });
+    process.on('beforeExit', () => {
+      void sdk?.shutdown();
+    });
   }
 }
 
 export const ObservabilityModules = [
   LoggerModule.forRoot({
     pinoHttp: {
-      transport: process.env.NODE_ENV !== 'production' ? { target: 'pino-pretty' } : undefined,
+      transport:
+        process.env.NODE_ENV !== 'production'
+          ? { target: 'pino-pretty' }
+          : undefined,
       level: process.env.LOG_LEVEL || 'info',
     },
   }),

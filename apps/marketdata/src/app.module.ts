@@ -3,5 +3,8 @@ import { PrometheusModule } from '@willsoto/nestjs-prometheus';
 import { ObservabilityModules } from '@connector/observability';
 import { MarketdataGateway } from './gateway';
 
-@Module({ imports: [...ObservabilityModules, PrometheusModule.register()], providers: [MarketdataGateway] })
+@Module({
+  imports: [...ObservabilityModules, PrometheusModule.register()],
+  providers: [MarketdataGateway],
+})
 export class AppModule {}
