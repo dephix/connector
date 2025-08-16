@@ -21,3 +21,7 @@ Cutting a release:
 4. Push branch and tag to GitHub
 
 CI will run tests and attach the coverage artifact. Optionally, you can add a GitHub Release entry pointing to the tag and paste highlights (no binaries are required since these are services). Deployment can be handled by your platform (Docker images, Helm, etc.) and should track the tag.
+
+## Components
+
+See component diagram of services/ports in `architecture/components.md`.
