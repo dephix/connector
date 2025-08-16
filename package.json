@@ -1,6 +1,6 @@
 {
   "name": "connector",
-  "version": "0.2.16",
+  "version": "0.3.0",
   "description": "📡 Client for seamless integration with crypto exchanges.",
   "author": "dephix",
   "private": true,
@@ -32,6 +32,8 @@
     "@nestjs/platform-express": "^11.0.1",
     "@nestjs/microservices": "^11.0.1",
     "nats": "^2.25.3",
+    "@nestjs/websockets": "^11.0.1",
+    "@nestjs/platform-ws": "^11.0.1",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.1",
     "@willsoto/nestjs-prometheus": "^6.0.2",

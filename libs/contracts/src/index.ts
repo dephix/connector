@@ -1,21 +1,17 @@
-// Place for message contracts (DTOs) and codecs. For now TS-only.
-export type ListExchangesRequest = Record<string, never>;
-export interface ExchangeDto {
-  id: string;
-  name: string;
-}
-export interface SymbolDto {
-  id: string;
-  base: string;
-  quote: string;
+export type ExchangeId = string;
+export type SymbolId = string;
+
+// Marketdata ticks event
+export interface TickIngestedV1 {
+  exchangeId: ExchangeId;
+  symbol: SymbolId;
+  price: number;
+  ts: number;
+  version: 'v1';
 }
 
-export interface AnalyzeSymbolRequest {
-  exchangeId: string;
-  symbol: string;
-}
-export interface AnalyzeSymbolResult {
-  exchangeId: string;
-  symbol: string;
-  score: number;
-}
+// Subjects
+export const subjects = {
+  ticksIngested: (exchangeId: ExchangeId, symbol: SymbolId) =>
+    `marketdata.ticks.${exchangeId}.${symbol}.v1`,
+};

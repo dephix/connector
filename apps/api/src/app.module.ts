@@ -4,6 +4,7 @@ import { ClientsModule, Transport } from '@nestjs/microservices';
 import { PrometheusModule } from '@willsoto/nestjs-prometheus';
 import { loadConfig } from '@connector/config';
 import { ObservabilityModules } from '@connector/observability';
+import { ApiWsGateway } from './ws.gateway';
 
 const cfg = loadConfig('api');
 
@@ -25,5 +26,6 @@ const cfg = loadConfig('api');
     ]),
   ],
   controllers: [AppController],
+  providers: [ApiWsGateway],
 })
 export class AppModule {}
