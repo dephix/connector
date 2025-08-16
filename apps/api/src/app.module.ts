@@ -8,6 +8,8 @@ import { ApiWsGateway } from './ws.gateway';
 
 const cfg = loadConfig('api');
 
+const wsProviders = process.env.NODE_ENV === 'test' ? [] : [ApiWsGateway];
+
 @Module({
   imports: [
     ...ObservabilityModules,
@@ -26,6 +28,6 @@ const cfg = loadConfig('api');
     ]),
   ],
   controllers: [AppController],
-  providers: [ApiWsGateway],
+  providers: [...wsProviders],
 })
 export class AppModule {}
