@@ -51,6 +51,7 @@ ANALYSIS_PORT=3030
 
 - Service docs live in `docs/`.
 - Monorepo reference: https://docs.nestjs.com/cli/monorepo
+ - Getting started: `docs/getting-started.md`
  
 ## Approach & Architecture
 
