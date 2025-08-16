@@ -34,10 +34,6 @@ jobs:
         run: npx -y pnpm@10 run build
       - name: Test with coverage
         run: npx -y pnpm@10 run test:cov
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          enablement: true
       - name: Upload coverage artifact
         uses: actions/upload-artifact@v4
         with:
@@ -49,7 +45,7 @@ jobs:
           path: coverage/lcov-report
 
   deploy-coverage:
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' && vars.PAGES_ENABLED == 'true'
     needs: build-test
     runs-on: ubuntu-latest
     environment:

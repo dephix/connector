@@ -110,3 +110,6 @@ flowchart LR
 ```bash
 docker run --rm -e NATS_URL=nats://host.docker.internal:4222 -p 3000:3000 ghcr.io/dephix/connector:v0.1.0-api
 ```
+
+### Coverage report (CI)
+- HTML coverage is published via GitHub Pages when enabled. If Pages is not enabled for the repo/org policy, artifacts are still available in the CI run (`coverage-lcov`).
