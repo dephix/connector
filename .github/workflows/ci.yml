@@ -40,7 +40,7 @@ jobs:
           name: coverage-lcov
           path: coverage/lcov.info
       - name: Upload HTML coverage
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4
         with:
           path: coverage/lcov-report
 
