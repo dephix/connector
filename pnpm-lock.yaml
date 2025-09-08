@@ -82,8 +82,8 @@ importers:
         specifier: ^3.2.0
         version: 3.3.1
       '@eslint/js':
-        specifier: ^9.18.0
-        version: 9.33.0
+        specifier: ^9.35.0
+        version: 9.35.0
       '@nestjs/cli':
         specifier: ^11.0.0
         version: 11.0.10(@types/node@22.17.1)
@@ -385,6 +385,10 @@ packages:
 
   '@eslint/js@9.33.0':
     resolution: {integrity: sha512-5K1/mKhWaMfreBGJTwval43JJmkip0RmM+3+IuqupeSKNC/Th2Kc7ucaq5ovTSra/OOKB9c58CGSz3QMVbWt0A==}
+    engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+
+  '@eslint/js@9.35.0':
+    resolution: {integrity: sha512-30iXE9whjlILfWobBkNerJo+TXYsgVM5ERQwMcMKCHckHflCmf7wXDAHlARoWnh0s1U72WqlbeyE7iAcCzuCPw==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
 
   '@eslint/object-schema@2.1.6':
@@ -3346,6 +3350,10 @@ packages:
     resolution: {integrity: sha512-zxsRIQG9HzG+jEljmvmZupOMDUQ0Jpj0yAgE28jQvvrdYTlEaiGwelJpdndMl/MBuRr70heIj83QyqJUWaU8mQ==}
     hasBin: true
 
+  pino@9.9.4:
+    resolution: {integrity: sha512-d1XorUQ7sSKqVcYdXuEYs2h1LKxejSorMEJ76XoZ0pPDf8VzJMe7GlPXpMBZeQ9gE4ZPIp5uGD+5Nw7scxiigg==}
+    hasBin: true
+
   pirates@4.0.7:
     resolution: {integrity: sha512-TfySrs/5nm8fQJDcBDuUng3VOUKsd7S+zqvbOTiGXHfxX4wK31ard+hoNuvkicM/2YFzlpDgABOevKSsB4G/FA==}
     engines: {node: '>= 6'}
@@ -4340,6 +4348,8 @@ snapshots:
       - supports-color
 
   '@eslint/js@9.33.0': {}
+
+  '@eslint/js@9.35.0': {}
 
   '@eslint/object-schema@2.1.6': {}
 
@@ -7876,7 +7886,7 @@ snapshots:
   pino-http@10.5.0:
     dependencies:
       get-caller-file: 2.0.5
-      pino: 9.9.0
+      pino: 9.9.4
       pino-std-serializers: 7.0.0
       process-warning: 5.0.0
 
@@ -7900,6 +7910,20 @@ snapshots:
   pino-std-serializers@7.0.0: {}
 
   pino@9.9.0:
+    dependencies:
+      atomic-sleep: 1.0.0
+      fast-redact: 3.5.0
+      on-exit-leak-free: 2.1.2
+      pino-abstract-transport: 2.0.0
+      pino-std-serializers: 7.0.0
+      process-warning: 5.0.0
+      quick-format-unescaped: 4.0.4
+      real-require: 0.2.0
+      safe-stable-stringify: 2.5.0
+      sonic-boom: 4.2.0
+      thread-stream: 3.1.0
+
+  pino@9.9.4:
     dependencies:
       atomic-sleep: 1.0.0
       fast-redact: 3.5.0
