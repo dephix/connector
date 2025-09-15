@@ -75,8 +75,8 @@ importers:
         specifier: ^8.18.0
         version: 8.18.3
       zod:
-        specifier: ^3.23.8
-        version: 3.25.76
+        specifier: ^4.1.8
+        version: 4.1.8
     devDependencies:
       '@eslint/eslintrc':
         specifier: ^3.2.0
@@ -3346,6 +3346,10 @@ packages:
     resolution: {integrity: sha512-zxsRIQG9HzG+jEljmvmZupOMDUQ0Jpj0yAgE28jQvvrdYTlEaiGwelJpdndMl/MBuRr70heIj83QyqJUWaU8mQ==}
     hasBin: true
 
+  pino@9.9.5:
+    resolution: {integrity: sha512-d1s98p8/4TfYhsJ09r/Azt30aYELRi6NNnZtEbqFw6BoGsdPVf5lKNK3kUwH8BmJJfpTLNuicjUQjaMbd93dVg==}
+    hasBin: true
+
   pirates@4.0.7:
     resolution: {integrity: sha512-TfySrs/5nm8fQJDcBDuUng3VOUKsd7S+zqvbOTiGXHfxX4wK31ard+hoNuvkicM/2YFzlpDgABOevKSsB4G/FA==}
     engines: {node: '>= 6'}
@@ -4049,8 +4053,8 @@ packages:
     resolution: {integrity: sha512-cYVsTjKl8b+FrnidjibDWskAv7UKOfcwaVZdp/it9n1s9fU3IkgDbhdIRKCW4JDsAlECJY0ytoVPT3sK6kideA==}
     engines: {node: '>=18'}
 
-  zod@3.25.76:
-    resolution: {integrity: sha512-gzUt/qt81nXsFGKIFcC3YnfEAx5NkunCfnDlvuBSSFS02bcXu4Lmea0AFIUwbLWxWPx3d9p8S5QoaujKcNQxcQ==}
+  zod@4.1.8:
+    resolution: {integrity: sha512-5R1P+WwQqmmMIEACyzSvo4JXHY5WiAFHRMg+zBZKgKS+Q1viRa0C1hmUKtHltoIFKtIdki3pRxkmpP74jnNYHQ==}
 
 snapshots:
 
@@ -7876,7 +7880,7 @@ snapshots:
   pino-http@10.5.0:
     dependencies:
       get-caller-file: 2.0.5
-      pino: 9.9.0
+      pino: 9.9.5
       pino-std-serializers: 7.0.0
       process-warning: 5.0.0
 
@@ -7900,6 +7904,20 @@ snapshots:
   pino-std-serializers@7.0.0: {}
 
   pino@9.9.0:
+    dependencies:
+      atomic-sleep: 1.0.0
+      fast-redact: 3.5.0
+      on-exit-leak-free: 2.1.2
+      pino-abstract-transport: 2.0.0
+      pino-std-serializers: 7.0.0
+      process-warning: 5.0.0
+      quick-format-unescaped: 4.0.4
+      real-require: 0.2.0
+      safe-stable-stringify: 2.5.0
+      sonic-boom: 4.2.0
+      thread-stream: 3.1.0
+
+  pino@9.9.5:
     dependencies:
       atomic-sleep: 1.0.0
       fast-redact: 3.5.0
@@ -8629,4 +8647,4 @@ snapshots:
 
   yoctocolors-cjs@2.1.2: {}
 
-  zod@3.25.76: {}
+  zod@4.1.8: {}
