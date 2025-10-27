@@ -35,7 +35,7 @@ jobs:
       - name: Test with coverage
         run: npx -y pnpm@10 run test:cov
       - name: Upload coverage artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: coverage-lcov
           path: coverage/lcov.info
